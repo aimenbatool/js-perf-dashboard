@@ -3,7 +3,8 @@ import { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import MetricsGraphics from 'react-metrics-graphics';
 import { subbenchmarksData } from '@mozilla-frontend-infra/perf-goggles';
-import Header from '../../components/Header';
+import Drawer from '../../components/Drawer';
+import ResponsiveDrawer from '../../components/ResponsiveDrawer';
 import CONFIG from '../../config';
 import prepareData from '../../utils/prepareData';
 
@@ -24,6 +25,7 @@ class Benchmark extends Component {
   state = {
     platform: 'win10',
     benchmark: 'motionmark-animometer',
+    subbenchmarks: {},
   }
 
   async componentDidMount() {
@@ -67,41 +69,44 @@ class Benchmark extends Component {
     const { benchmark, benchmarkData, platform } = this.state;
 
     return (
-      <div className={this.props.classes.root}>
-        <Header onChange={this.onChange} {...this.state} />
-        {benchmarkData && Object.keys(benchmarkData).length > 0 &&
-          <div>
+      <div>
+        <ResponsiveDrawer
+          drawer={<Drawer onChange={this.onChange} {...this.state} />}
+        >
+          {benchmarkData && Object.keys(benchmarkData).length > 0 &&
             <div>
-              <h3>{CONFIG[platform].benchmarks[benchmark].label}</h3>
-              {Object.entries(benchmarkData.benchmark.urls).map((entry) => {
-                const browserKey = entry[0];
-                const url = entry[1];
-                return (
-                  <div key={url}>
-                    <span>All subbenchmarks for {browserKey} </span>
-                    <a key={url} href={url} target="_blank" rel="noopener noreferrer">link</a>
-                  </div>
-                );
-              })}
-            </div>
-            {Object.values(benchmarkData.subbenchmarks).map(({
-              data, jointUrl, meta, testName,
-            }) => (
-              <div key={testName}>
-                <h3>{testName}</h3>
-                <a href={jointUrl} target="_blank" rel="noopener noreferrer">link</a>
-                <MetricsGraphics
-                  key={meta.test}
-                  data={data}
-                  x_accessor="datetime"
-                  y_accessor="value"
-                  min_y_from_data
-                  full_width
-                />
+              <div>
+                <h3>{CONFIG[platform].benchmarks[benchmark].label}</h3>
+                {Object.entries(benchmarkData.benchmark.urls).map((entry) => {
+                  const browserKey = entry[0];
+                  const url = entry[1];
+                  return (
+                    <div key={url}>
+                      <span>All subbenchmarks for {browserKey} </span>
+                      <a key={url} href={url} target="_blank" rel="noopener noreferrer">link</a>
+                    </div>
+                  );
+                })}
               </div>
-            ))}
-          </div>
-        }
+              {Object.values(benchmarkData.subbenchmarks).map(({
+                data, jointUrl, meta, testName,
+              }) => (
+                <div key={testName}>
+                  <h3>{testName}</h3>
+                  <a href={jointUrl} target="_blank" rel="noopener noreferrer">link</a>
+                  <MetricsGraphics
+                    key={meta.test}
+                    data={data}
+                    x_accessor="datetime"
+                    y_accessor="value"
+                    min_y_from_data
+                    full_width
+                  />
+                </div>
+              ))}
+            </div>
+          }
+        </ResponsiveDrawer>
       </div>
     );
   }
