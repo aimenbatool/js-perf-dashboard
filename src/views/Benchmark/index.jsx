@@ -19,12 +19,17 @@ class Benchmark extends Component {
 
   constructor(props) {
     super(props);
-    this.onChange = this.onChange.bind(this);
+    this.onChangeSelection = this.onChangeSelection.bind(this);
+    this.onToggleLegend = this.onToggleLegend.bind(this);
   }
 
   state = {
     platform: 'win10',
     benchmark: 'motionmark-animometer',
+    legends: {
+      firefox: { checked: true, key: 'firefox', label: 'Firefox' },
+      chrome: { checked: true, key: 'chrome', label: 'Chrome' },
+    },
     subbenchmarks: {},
   }
 
@@ -40,7 +45,7 @@ class Benchmark extends Component {
     }
   }
 
-  async onChange(event) {
+  async onChangeSelection(event) {
     // Clear the plotted graphs
     this.setState({ benchmarkData: null });
     if (event.target.name === 'platform') {
@@ -49,6 +54,15 @@ class Benchmark extends Component {
       });
     }
     this.setState({ [event.target.name]: event.target.value });
+  }
+
+  async onToggleLegend(event) {
+    const { value } = event.target;
+    this.setState((prevState) => {
+      const newLegends = JSON.parse(JSON.stringify(prevState.legends));
+      newLegends[value].checked = !newLegends[value].checked;
+      return { legends: newLegends };
+    });
   }
 
   async fetchData(platform, benchmark) {
@@ -71,7 +85,14 @@ class Benchmark extends Component {
     return (
       <div>
         <ResponsiveDrawer
-          drawer={<Drawer onChange={this.onChange} {...this.state} />}
+          drawer={(
+            <Drawer
+              legends={this.state.legends}
+              onToggleLegend={this.onToggleLegend}
+              onChangeSelection={this.onChangeSelection}
+              {...this.state}
+            />
+          )}
         >
           {benchmarkData && Object.keys(benchmarkData).length > 0 &&
             <div>

@@ -1,24 +1,22 @@
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Picker from '../../components/Picker';
+import SwitchesGroup from '../../components/SwitchesGroup';
 import CONFIG from '../../config';
 
 const styles = () => ({
-  root: {
-    display: 'flex',
-    justifyContent: 'space-evenly',
-  },
+  root: {},
 });
 
 const Header = ({
-  classes, benchmark, onChange, platform,
+  classes, benchmark, legends, onChangeSelection, onToggleLegend, platform,
 }) => (
-  <div className={classes.root2} >
+  <div className={classes.root} >
     <Picker
       key="Platform selection"
       identifier="platform"
       topLabel="Platform"
-      onSelection={onChange}
+      onSelection={onChangeSelection}
       selectedValue={platform}
       options={
         Object.keys(CONFIG).reduce((res, platformKey) => {
@@ -31,7 +29,7 @@ const Header = ({
       key="Benchmark selection"
       identifier="benchmark"
       topLabel="Benchmark"
-      onSelection={onChange}
+      onSelection={onChangeSelection}
       selectedValue={benchmark}
       options={
         Object.keys(CONFIG[platform].benchmarks).reduce((res, benchmarkKey) => {
@@ -40,13 +38,16 @@ const Header = ({
         }, [])
       }
     />
+    <SwitchesGroup switches={legends} onChange={onToggleLegend} />
   </div>
 );
 
 Header.propTypes = ({
   classes: PropTypes.shape().isRequired,
   benchmark: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
+  legends: PropTypes.shape({}).isRequired,
+  onChangeSelection: PropTypes.func.isRequired,
+  onToggleLegend: PropTypes.func.isRequired,
   platform: PropTypes.string.isRequired,
 });
 

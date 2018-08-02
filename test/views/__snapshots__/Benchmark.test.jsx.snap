@@ -76,7 +76,7 @@ exports[`renders correctly 1`] = `
               className="MuiDivider-root-120"
             />
             <div
-              className={undefined}
+              className="Header-root-124"
             >
               <form
                 autoComplete="off"
@@ -204,6 +204,126 @@ exports[`renders correctly 1`] = `
                   </div>
                 </div>
               </form>
+              <fieldset
+                className="MuiFormControl-root-126 SwitchesGroup-root-162"
+              >
+                <div
+                  className="MuiFormGroup-root-163"
+                >
+                  <label
+                    className="MuiFormControlLabel-root-165"
+                  >
+                    <span
+                      className="MuiSwitch-root-168"
+                    >
+                      <span
+                        className="MuiButtonBase-root-53 MuiIconButton-root-47 MuiSwitchBase-root-177 MuiSwitch-switchBase-171 MuiSwitch-colorSecondary-174 MuiSwitchBase-checked-178 MuiSwitch-checked-172"
+                        onBlur={[Function]}
+                        onFocus={[Function]}
+                        onKeyDown={[Function]}
+                        onKeyUp={[Function]}
+                        onMouseDown={[Function]}
+                        onMouseLeave={[Function]}
+                        onMouseUp={[Function]}
+                        onTouchEnd={[Function]}
+                        onTouchMove={[Function]}
+                        onTouchStart={[Function]}
+                        role={undefined}
+                        tabIndex={null}
+                      >
+                        <span
+                          className="MuiIconButton-label-52"
+                        >
+                          <span
+                            className="MuiSwitch-icon-169 MuiSwitch-iconChecked-170"
+                          />
+                          <input
+                            autoFocus={undefined}
+                            checked={true}
+                            className="MuiSwitchBase-input-180"
+                            disabled={false}
+                            id={undefined}
+                            name={undefined}
+                            onChange={[Function]}
+                            readOnly={undefined}
+                            required={undefined}
+                            tabIndex={undefined}
+                            type="checkbox"
+                            value="firefox"
+                          />
+                        </span>
+                        <span
+                          className="MuiTouchRipple-root-63"
+                        />
+                      </span>
+                      <span
+                        className="MuiSwitch-bar-176"
+                      />
+                    </span>
+                    <span
+                      className="MuiTypography-root-70 MuiTypography-body1-79 MuiFormControlLabel-label-167"
+                    >
+                      Firefox
+                    </span>
+                  </label>
+                  <label
+                    className="MuiFormControlLabel-root-165"
+                  >
+                    <span
+                      className="MuiSwitch-root-168"
+                    >
+                      <span
+                        className="MuiButtonBase-root-53 MuiIconButton-root-47 MuiSwitchBase-root-177 MuiSwitch-switchBase-171 MuiSwitch-colorSecondary-174 MuiSwitchBase-checked-178 MuiSwitch-checked-172"
+                        onBlur={[Function]}
+                        onFocus={[Function]}
+                        onKeyDown={[Function]}
+                        onKeyUp={[Function]}
+                        onMouseDown={[Function]}
+                        onMouseLeave={[Function]}
+                        onMouseUp={[Function]}
+                        onTouchEnd={[Function]}
+                        onTouchMove={[Function]}
+                        onTouchStart={[Function]}
+                        role={undefined}
+                        tabIndex={null}
+                      >
+                        <span
+                          className="MuiIconButton-label-52"
+                        >
+                          <span
+                            className="MuiSwitch-icon-169 MuiSwitch-iconChecked-170"
+                          />
+                          <input
+                            autoFocus={undefined}
+                            checked={true}
+                            className="MuiSwitchBase-input-180"
+                            disabled={false}
+                            id={undefined}
+                            name={undefined}
+                            onChange={[Function]}
+                            readOnly={undefined}
+                            required={undefined}
+                            tabIndex={undefined}
+                            type="checkbox"
+                            value="chrome"
+                          />
+                        </span>
+                        <span
+                          className="MuiTouchRipple-root-63"
+                        />
+                      </span>
+                      <span
+                        className="MuiSwitch-bar-176"
+                      />
+                    </span>
+                    <span
+                      className="MuiTypography-root-70 MuiTypography-body1-79 MuiFormControlLabel-label-167"
+                    >
+                      Chrome
+                    </span>
+                  </label>
+                </div>
+              </fieldset>
             </div>
           </div>
         </div>
